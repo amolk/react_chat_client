@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <script src="https://unpkg.com/react/umd/react.production.min.js" crossorigin></script>
+
+    <script
+      src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"
+      crossorigin></script>
+
+    <script
+      src="https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js"
+      crossorigin></script>
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300" rel="stylesheet" type="text/css">
+
+<script src="https://use.typekit.net/hoy3lrg.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+
+<style class="cp-pen-styles">
+body {
+  font-family: "proxima-nova", "Source Sans Pro", sans-serif !important;
+  font-size: 16px;
+  font-weight: 400 !important;
+  letter-spacing: 0.1px;
+  color: #32465a;
+  text-rendering: optimizeLegibility;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  -webkit-font-smoothing: antialiased;
+}
+
+.chat-panel {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  left: 20px;
+}
+
+@media screen and (max-width: 735px) {
+  .chat-panel {
+    min-width: 300px !important;
+  }
+}
+.contact-profile {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background: #f5f5f5;
+  font-size: 1.5em;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-bottom: 0;
+  padding-left: 16px;
+}
+.contact-profile img {
+  width: 40px;
+  border-radius: 50%;
+  float: left;
+  margin: 9px 12px 0 9px;
+}
+.contact-profile p {
+  float: left;
+}
+.contact-profile .social-media {
+  float: right;
+}
+.contact-profile .social-media i {
+  margin-left: 14px;
+  cursor: pointer;
+}
+.contact-profile .social-media i:nth-last-child(1) {
+  margin-right: 20px;
+}
+.contact-profile .social-media i:hover {
+  color: #435f7a;
+}
+.chat-panel .messages {
+  height: auto;
+  min-height: calc(100% - 93px);
+  max-height: calc(100% - 93px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: rgb(230, 234, 234);
+  font-size: 1.1em;
+}
+@media screen and (max-width: 735px) {
+  .chat-panel .messages {
+    max-height: calc(100% - 105px);
+  }
+}
+.chat-panel .messages::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+.chat-panel .messages::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.chat-panel .messages ul li {
+  display: inline-block;
+  clear: both;
+  float: left;
+  margin: 15px 15px 5px 15px;
+  width: calc(100% - 25px);
+  font-size: 0.9em;
+}
+.chat-panel .messages ul li:nth-last-child(1) {
+  margin-bottom: 20px;
+}
+.chat-panel .messages ul .sent img.avatar {
+  margin: 0.5em 8px 0 0;
+}
+.chat-panel .messages ul .sent .bubble {
+  background: #435f7a;
+  color: #f5f5f5;
+}
+.chat-panel .messages ul .replies img.avatar {
+  float: right;
+  margin: 0.5em 0 0 8px;
+}
+.chat-panel .messages ul .replies .bubble {
+  background: #f5f5f5;
+  float: right;
+}
+.chat-panel .messages ul .replies table {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.chat-panel .messages ul li img.avatar {
+  width: 22px;
+  border-radius: 50%;
+  float: left;
+}
+.chat-panel .messages ul li .bubble {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 205px;
+  line-height: 130%;
+}
+@media screen and (min-width: 735px) {
+  .chat-panel .messages ul li .bubble {
+    max-width: 300px;
+  }
+}
+
+.chat-panel .messages ul li .bubble td {
+  border-bottom-color: #536b82
+}
+
+.chat-panel .messages ul li img.upload-image {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  padding: 16px;
+  margin: 0;
+}
+
+.chat-panel .message-input {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 99;
+  height: 48px;
+}
+@media screen and (min-width: 640px) {
+  .chat-panel .message-input {
+    width: calc(100% - 0px);
+  }
+}
+
+.chat-panel .message-input .wrap {
+  position: relative;
+}
+.chat-panel .message-input .input-group input {
+  font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
+  float: left;
+  border: none;
+  width: calc(100% - 50px);
+  padding: 11px 32px 10px 8px;
+  color: #32465a;
+  background: #f5f5f5;
+  margin: 0;
+  height: 48px;
+  font-size: 1em;
+  border-radius: 0;
+}
+@media screen and (max-width: 735px) {
+  .chat-panel .message-input .input-group input {
+    padding: 15px 32px 16px 8px;
+  }
+}
+.chat-panel .message-input .input-group input:focus {
+  outline: none;
+}
+.chat-panel .message-input .wrap .attachment {
+  position: absolute;
+  right: 60px;
+  z-index: 4;
+  margin-top: 10px;
+  font-size: 1.1em;
+  color: #435f7a;
+  opacity: .5;
+  cursor: pointer;
+}
+@media screen and (max-width: 735px) {
+  .chat-panel .message-input .wrap .attachment {
+    margin-top: 17px;
+    right: 65px;
+  }
+}
+.chat-panel .message-input .wrap .attachment:hover {
+  opacity: 1;
+}
+.chat-panel .message-input .input-group button {
+  float: left;
+  border: none;
+  border-radius: 0;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  background: #32465a;
+  color: #f5f5f5;
+  padding: 0;
+  padding-top: 2px;
+  padding-left: 1px;
+}
+@media screen and (max-width: 735px) {
+  .chat-panel .message-input .input-group button {
+    padding: 0;
+  }
+}
+.chat-panel .message-input .input-group button:hover {
+  background: #435f7a;
+}
+.chat-panel .message-input .input-group button:focus {
+  outline: none;
+}
+
+.chat-panel .message-input .input-group button .fa {
+  font-size: 1.3em;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.file-drop > .file-drop-target.file-drop-dragging-over-target input {
+  background: #aaa;
+}
+
+</style>
+
+    <title>Ask Bertrand</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>

@@ -1,0 +1,3 @@
+export const ADD_USER_MESSAGE = "ADD_USER_MESSAGE";
+export const ADD_BOT_MESSAGE = "ADD_BOT_MESSAGE";
+export const ADD_FILE_UPLOAD = "ADD_FILE_UPLOAD";
