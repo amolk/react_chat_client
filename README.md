@@ -12,3 +12,6 @@ This is pre-alpha release. It is not ready for serious application. You can use 
     yarn install
     yarn start
 ```
+
+## Thanks
+- [Bootstrap theme](https://bootsnipp.com/snippets/exR5v)

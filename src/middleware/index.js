@@ -18,7 +18,11 @@ const process_user_message = (next, action) => {
   function onSuccess(response){
     console.log(response.result)
     console.log(response.result.fulfillment.speech)
-
+    if(response.result.fulfillment.speech.includes("loyal")) {
+      const gbqml_query = "SELECT (predicted_eligible_probs[OFFSET(0)].prob) as customer_eligibility_probability FROM ML.PREDICT(MODEL `gotit-analytics.retail_telco_sqlite.customer_eligibility_model`, (select A.*, B.email_address from (SELECT customer_plan_eligibility.customer_key as customer_key, customer_plan_eligibility.customer_life, customer_plan_eligibility.number_of_payments FROM `gotit-analytics`.retail_telco_sqlite.customer_plan_eligibility as customer_plan_eligibility) AS A join (SELECT customer_key, email_address from `gotit-analytics`.retail_telco_sqlite.dim_customer) as B ON A.customer_key = B.customer_key)) WHERE email_address like 'jocelyndavis@allen.com'"
+      console.log("Query -")
+      console.log(gbqml_query)
+    }
     next(addBotMessage(response.result.fulfillment.speech, response.result));
   }
 }
